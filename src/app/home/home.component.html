@@ -1,0 +1,231 @@
+
+
+
+
+<div class="bgclr">
+  <div class="row head p-0">
+    <div class="col-sm-9 p-sm-0 p-3">
+      <h1>Welcome, Eren</h1>
+      <span class="c">Good to see you boss!</span>
+    </div>
+    <div class="fr col-sm-3 p-sm-0 p-3">
+      <button
+        type="button"
+        class="btn btn-success float-right"
+        data-toggle="modal"
+        data-target="#exampleModal"
+        (click)="add()"
+      >
+        + Create Eden
+      </button>
+    </div>
+  </div>
+
+  <div
+    [ngClass]="['modal', 'fade']"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            <span> {{ manageEdit ? "Edit" : "Add" }}</span> User
+          </h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+            tabindex="-1"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="homeForm" class="d-flex flex-column bg-light">
+            <label for="Name">Name:</label>
+            <input
+              type="text"
+              id="Name"
+              [appBorderclr]="inputv('Name')"
+              formControlName="Name"
+              class="mb-3"
+              [ngStyle]= "dupNameField"
+            />
+            <span *ngIf="check('Name')" class="text-warning mt-n3">
+              Name is required.
+            </span>
+            <span *ngIf="dupName"> Name is already taken. </span>
+
+            <label for="Group">Group:</label>
+            <select
+              formControlName="Group"
+              id="Group"
+              [appBorderclr]="inputv('Group')"
+              class="mb-3"
+            >
+              <option value="Designers">Designers</option>
+              <option value="Development">Development</option>
+              <option value="Management">Management</option>
+              <option value="Social Media">Social Media</option>
+            </select>
+            <span *ngIf="check('Group')" class="text-warning mt-n3">
+              Group is required.
+            </span>
+
+            <label for="Status">Status:</label>
+            <select
+              formControlName="Status"
+              id="Status"
+              [appBorderclr]="inputv('Status')"
+              class="mb-3"
+            >
+              <option value="In Progress">In progress</option>
+              <option value="Completed">Completed</option>
+              <option value="Waiting">Waiting</option>
+            </select>
+            <span *ngIf="check('Status')" class="text-warning mt-n3">
+              Status is required.
+            </span>
+
+            <label for="Date">Date:</label>
+            <input
+              type="Date"
+              formControlName="Date"
+              [appBorderclr]="inputv('Date')"
+              class="mb-3"
+            />
+
+            <span
+              *ngIf="homeForm.get('Date')?.hasError('futureDate')"
+              class="text-danger mt-n3"
+            >
+              Date cannot be in the future.
+            </span>
+            <span *ngIf="check('Date')" class="text-warning mt-n3">
+              Date is required.
+            </span>
+          </form>
+        </div>
+
+
+
+        <div class="modal-footer">
+          <button
+            [ngClass]="['btn', disablebtnclr]"
+            [disabled]="homeForm.invalid || dupName"
+            data-toggle="modal"
+            [attr.data-target]="'#suredialog'"
+          >
+            {{ manageEdit ? "Edit" : "Add" }} user
+          </button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-dismiss="modal"
+            id="closeField"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" tabindex="-1" id="suredialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Are You Sure!</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+            tabindex="-1"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="[manageEdit ? editUser(userId, homeForm.value) : postUserData(homeForm.value)]"
+            [attr.data-dismiss]="[display]"
+          >
+            Save changes
+          </button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sdiv mt-3">
+    <div class="bgff">
+      <div class="row">
+        <h4 class="pl-3 col-md-6">Eden's Created This Week</h4>
+      </div>
+
+      <div>
+        <div class="row bg-sec mt-3">
+          <span class="p-2 col-4">Name</span>
+          <span class="p-2 col text-center">Group</span>
+          <span class="p-2 col text-center">Status</span>
+          <span class="p-2 col text-center">Date</span>
+          <span class="py-2 px-0 col ls text-center">Action</span>
+        </div>
+
+        <div class="m-0 p-0 overscroll">
+          <div class="row pt-3" *ngFor="let user of usersData; let i = index">
+            <span class="p-2 ml-3 pl-3 col-4"> {{ user.Name }} </span>
+            <span class="p-2 col c text-center"> {{ user.Group }} </span>
+            <span class="col p-2 text-center">
+              <p
+                *ngIf="user.Status === 'In Progress'"
+                class="badge-y badge badge-pill"
+              >
+                {{ user.Status }}
+              </p>
+              <p
+                *ngIf="user.Status === 'Completed'"
+                class="badge-g badge badge-pill"
+              >
+                {{ user.Status }}
+              </p>
+              <p
+                *ngIf="user.Status === 'Waiting'"
+                class="badge-p badge badge-pill"
+              >
+                {{ user.Status }}
+              </p>
+            </span>
+            <span class="p-2 col c text-center">
+              {{ user.Date | date}}
+            </span>
+            <div class="col p-2 text-center">
+              <button
+                type="button"
+                class="btn btn-info mr-2"
+                data-toggle="modal"
+                data-target="#exampleModal"
+                (click)="edit(i)"
+              >
+                Edit
+              </button>
+              <button type="button" class="btn btn-danger" (click)="delete(user.id)">
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

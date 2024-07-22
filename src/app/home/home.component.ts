@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -36,6 +36,18 @@ export class HomeComponent implements OnInit {
 
   constructor(private userDataService:ApiserviceService){
   }
+
+  @ViewChild('Submit') SubmitBtn!: ElementRef;
+  @ViewChild('Confirm') firm!: ElementRef;
+
+  enterKeyAction(el: ElementRef){
+    if(el){
+      setTimeout(el.nativeElement.focus(), 2000);
+      console.log(el.nativeElement);
+    }
+  }
+
+
 
   getUsers(){
     this.userDataService.getUsers().subscribe((data) => {
@@ -163,13 +175,14 @@ export class HomeComponent implements OnInit {
         this.dupNameField = {"border-color" : 'green'}
       }
     })
-    this.dupNameField = {'border-color' : 'green'}
     this.homeForm.get('name')?.untouched;
     this.dupName = false;
     this.display = '';
     this.userId = this.usersData[index].id;
     this.closeField = document.getElementById('closeField');
   }
+
+
 
 
   spaceValidator(): ValidatorFn {

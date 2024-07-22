@@ -38,11 +38,10 @@ export class HomeComponent implements OnInit {
   }
 
   @ViewChild('Submit') SubmitBtn!: ElementRef;
-  @ViewChild('Confirm') firm!: ElementRef;
 
   enterKeyAction(el: ElementRef){
     if(el){
-      setTimeout(el.nativeElement.focus(), 2000);
+      el.nativeElement.focus();
       console.log(el.nativeElement);
     }
   }

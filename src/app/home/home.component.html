@@ -58,7 +58,7 @@
             <span *ngIf="check('Name')" class="text-warning mt-n3">
               Name is required.
             </span>
-            <span *ngIf="dupName"> Name is already taken. </span>
+            <span *ngIf="dupName" class="text-warning mt-n3"> Name is already taken. </span>
 
             <label for="Group">Group:</label>
             <select

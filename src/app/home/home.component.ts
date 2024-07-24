@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, Self } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
   };
   dupName:boolean = false;
 
-  constructor(private userDataService:ApiserviceService){
+  constructor(@Self() private userDataService:ApiserviceService){
   }
 
   @ViewChild('Submit') SubmitBtn!: ElementRef;

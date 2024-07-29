@@ -11,6 +11,12 @@ import { ConfigurationComponent } from './configuration/configuration.component'
 import { NotificationComponent } from './notification/notification.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BorderclrDirective } from './directives/borderclr.directive';
+import { NavComponent } from './nav/nav.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginpageComponent } from './loginpage/loginpage.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -22,8 +28,20 @@ import { BorderclrDirective } from './directives/borderclr.directive';
     ConfigurationComponent,
     NotificationComponent,
     BorderclrDirective,
+    NavComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule, HttpClientModule, FormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    LoginpageComponent,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

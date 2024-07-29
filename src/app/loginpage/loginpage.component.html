@@ -1,0 +1,33 @@
+<div class="modal-dialog bg-light h-auto">
+  <div class="example-container d-flex flex-column p-5">
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your email</mat-label>
+      <input matInput placeholder="pat@example.com" [formControl]="email" required>
+      <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your password</mat-label>
+      <input [formControl]="password"  matInput [type]="hide ? 'password' : 'text'">
+      <mat-error *ngIf="password.errors">Password must contain at least one digit, one lowercase letter, and one uppercase letter, and be at least 8 characters long.</mat-error>
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Otp</mat-label>
+      <input matInput [formControl]="Otp" type="number" required >
+      <mat-error>
+        Otp required
+      </mat-error>
+    </mat-form-field>
+
+
+    <mat-checkbox class="example-margin" [checked]="isChecked"> Check me!</mat-checkbox>
+
+    
+    <button mat-raised-button [color]="'primary'" [disabled]="email.invalid || password.invalid || Otp.errors" (click)="navigate()">Primary</button>
+  </div>  
+</div>
+  

@@ -122,7 +122,7 @@ export class HomeComponent implements OnInit {
   check(n: string) {
     return (
       this.homeForm.get(n)?.hasError('required') &&
-      this.homeForm.get(n)?.touched
+      (this.homeForm.get(n)?.touched && this.homeForm.get(n)?.value.trim() == 0) //////////////////////////////////////////////
     );
   }
 
@@ -172,8 +172,8 @@ export class HomeComponent implements OnInit {
 
   spaceValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
-      const value = control.value?.trim();
-      if (value && value?.length === 0) {
+      const value = control.value;
+      if (value && value?.trim().length === 0) {
         return { noOnlySpaces: true };
       }
       return null;

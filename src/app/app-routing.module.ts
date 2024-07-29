@@ -6,9 +6,10 @@ import { AuditComponent } from './audit/audit.component';
 import { BillingComponent } from './billing/billing.component';
 import { ConfigurationComponent } from './configuration/configuration.component';
 import { NotificationComponent } from './notification/notification.component';
+import { LoginpageComponent } from './loginpage/loginpage.component';
 
 const routes: Routes = [
-  { path: '', redirectTo:'/home' , pathMatch: 'full'},
+  { path: '',  component: LoginpageComponent},
   { path: 'home', component: HomeComponent},
   { path: 'member', component: MembersComponent},
   { path: 'audit', component:AuditComponent },

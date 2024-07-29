@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, Self } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -34,8 +34,19 @@ export class HomeComponent implements OnInit {
   };
   dupName:boolean = false;
 
-  constructor(private userDataService:ApiserviceService){
+  constructor(@Self() private userDataService:ApiserviceService){
   }
+
+  @ViewChild('Submit') SubmitBtn!: ElementRef;
+
+  enterKeyAction(el: ElementRef){
+    if(el){
+      el.nativeElement.focus();
+      console.log(el.nativeElement);
+    }
+  }
+
+
 
   getUsers(){
     this.userDataService.getUsers().subscribe((data) => {
@@ -72,13 +83,15 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.homeForm = new FormGroup({
       Name: new FormControl('', [Validators?.required, this.spaceValidator()]),
-      Group: new FormControl('', [Validators?.required]),
+      Group: new FormControl('', [Validators?.required, this.spaceValidator()]),
       Status: new FormControl('', [
-        Validators?.required
+        Validators?.required, 
+        this.spaceValidator()
       ]),
       Date: new FormControl('', [
         Validators?.required,
         this.DateValidator,
+        this.spaceValidator()
       ]),
     });
     this.getUsers();
@@ -161,13 +174,14 @@ export class HomeComponent implements OnInit {
         this.dupNameField = {"border-color" : 'green'}
       }
     })
-    this.dupNameField = {'border-color' : 'green'}
     this.homeForm.get('name')?.untouched;
     this.dupName = false;
     this.display = '';
     this.userId = this.usersData[index].id;
     this.closeField = document.getElementById('closeField');
   }
+
+
 
 
   spaceValidator(): ValidatorFn {

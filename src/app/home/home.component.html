@@ -50,11 +50,12 @@
               formControlName="Name"
               class="mb-3"
               [ngStyle]= "dupNameField"
+              (keydown.enter)="enterKeyAction(SubmitBtn)"
             />
             <span *ngIf="check('Name')" class="text-warning mt-n3">
               Name is required.
             </span>
-            <span *ngIf="dupName"> Name is already taken. </span>
+            <span *ngIf="dupName" class="text-warning mt-n3"> Name is already taken. </span>
 
             <label for="Group">Group:</label>
             <select
@@ -62,6 +63,7 @@
               id="Group"
               [appBorderclr]="inputv('Group')"
               class="mb-3"
+              (keydown.enter)="enterKeyAction(SubmitBtn)"
             >
               <option value="Designers">Designers</option>
               <option value="Development">Development</option>
@@ -78,6 +80,7 @@
               id="Status"
               [appBorderclr]="inputv('Status')"
               class="mb-3"
+              (keydown.enter)="enterKeyAction(SubmitBtn)"
             >
               <option value="In Progress">In progress</option>
               <option value="Completed">Completed</option>
@@ -92,6 +95,7 @@
               type="Date"
               formControlName="Date"
               [appBorderclr]="inputv('Date')"
+              (keydown.enter)="enterKeyAction(SubmitBtn)"
               class="mb-3"
             />
 
@@ -111,6 +115,7 @@
 
         <div class="modal-footer">
           <button
+            #Submit
             [ngClass]="['btn', disablebtnclr]"
             [disabled]="homeForm.invalid || dupName"
             data-toggle="modal"

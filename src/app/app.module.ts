@@ -14,9 +14,6 @@ import { BorderclrDirective } from './directives/borderclr.directive';
 import { NavComponent } from './nav/nav.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginpageComponent } from './loginpage/loginpage.component';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -38,9 +35,6 @@ import { MatButtonModule } from '@angular/material/button';
     FormsModule,
     BrowserAnimationsModule,
     LoginpageComponent,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

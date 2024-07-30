@@ -42,76 +42,77 @@
         </div>
         <div class="modal-body">
           <form [formGroup]="homeForm" class="d-flex flex-column bg-light">
-            <label for="Name">Name:</label>
-            <input
-              type="text"
-              id="Name"
-              [appBorderclr]="inputv('Name')"
-              formControlName="Name"
-              class="mb-3"
-              [ngStyle]= "dupNameField"
-              (keydown.enter)="enterKeyAction(SubmitBtn)"
-            />
-            <span *ngIf="check('Name')" class="text-warning mt-n3">
-              Name is required.
-            </span>
-            <span *ngIf="dupName" class="text-warning mt-n3"> Name is already taken. </span>
+            <mat-form-field>
+              <mat-label for="Name">Name:</mat-label>
+              <input
+                matInput
+                type="text"
+                id="Name"
+                [formControl]="Name"
+                [ngStyle]="dupNameField"
+                (keydown.enter)="enterKeyAction(SubmitBtn)"
+              />
+              <mat-error *ngIf="Name.invalid"> Name is required. </mat-error>
+              <mat-error *ngIf="dupName">
+                Name is already taken.
+              </mat-error>
+            </mat-form-field>
 
-            <label for="Group">Group:</label>
-            <select
-              formControlName="Group"
-              id="Group"
-              [appBorderclr]="inputv('Group')"
-              class="mb-3"
-              (keydown.enter)="enterKeyAction(SubmitBtn)"
-            >
-              <option value="Designers">Designers</option>
-              <option value="Development">Development</option>
-              <option value="Management">Management</option>
-              <option value="Social Media">Social Media</option>
-            </select>
-            <span *ngIf="check('Group')" class="text-warning mt-n3">
-              Group is required.
-            </span>
+            <mat-form-field appearance="fill">
+              <mat-label for="Group">Group:</mat-label>
+              <mat-select
+                [formControl]="Group"
+                id="Group"
+                (keydown.enter)="enterKeyAction(SubmitBtn)"
+              >
+                <mat-option value="Designers">Designers</mat-option>
+                <mat-option value="Development">Development</mat-option>
+                <mat-option value="Management">Management</mat-option>
+                <mat-option value="Social Media">Social Media</mat-option>
+              </mat-select>
+              <mat-error *ngIf="check('Group')"> Group is required. </mat-error>
+            </mat-form-field>
 
-            <label for="Status">Status:</label>
-            <select
-              formControlName="Status"
-              id="Status"
-              [appBorderclr]="inputv('Status')"
-              class="mb-3"
-              (keydown.enter)="enterKeyAction(SubmitBtn)"
-            >
-              <option value="In Progress">In progress</option>
-              <option value="Completed">Completed</option>
-              <option value="Waiting">Waiting</option>
-            </select>
-            <span *ngIf="check('Status')" class="text-warning mt-n3">
-              Status is required.
-            </span>
+            <mat-form-field>
+              <mat-label for="Status">Status:</mat-label>
+              <mat-select
+                [formControl]="Status"
+                id="Status"
+                (keydown.enter)="enterKeyAction(SubmitBtn)"
+              >
+                <mat-option value="In Progress">In progress</mat-option>
+                <mat-option value="Completed">Completed</mat-option>
+                <mat-option value="Waiting">Waiting</mat-option>
+              </mat-select>
+              <mat-error *ngIf="check('Status')">
+                Status is required.
+              </mat-error>
+            </mat-form-field>
 
-            <label for="Date">Date:</label>
-            <input
-              type="Date"
-              formControlName="Date"
-              [appBorderclr]="inputv('Date')"
-              (keydown.enter)="enterKeyAction(SubmitBtn)"
-              class="mb-3"
-            />
+            <mat-form-field appearance="fill">
+              <mat-label>Date:</mat-label>
+              <input
+                matInput
+                type="date"
+                [matDatepicker]="picker"
+                [formControl]="Date"
+                (keydown.enter)="enterKeyAction(SubmitBtn)"
+              />
+              <mat-datepicker-toggle
+                matIconSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
 
-            <span
-              *ngIf="homeForm.get('Date')?.hasError('futureDate')"
-              class="text-danger mt-n3"
-            >
-              Date cannot be in the future.
-            </span>
-            <span *ngIf="check('Date')" class="text-warning mt-n3">
-              Date is required.
-            </span>
+              <mat-error
+                *ngIf="homeForm.get('Date')?.hasError('futureDate')"
+              >
+                Date cannot be in the future.
+              </mat-error>
+              <mat-error *ngIf="check('Date')"> Date is required. </mat-error>
+            </mat-form-field>
           </form>
         </div>
-
-
 
         <div class="modal-footer">
           <button
@@ -155,7 +156,13 @@
           <button
             type="button"
             class="btn btn-primary"
-            (click)="[manageEdit ? editUser(userId, homeForm.value) : postUserData(homeForm.value)]"
+            (click)="
+              [
+                manageEdit
+                  ? editUser(userId, homeForm.value)
+                  : postUserData(homeForm.value)
+              ]
+            "
             [attr.data-dismiss]="[display]"
           >
             Save changes
@@ -208,7 +215,7 @@
               </p>
             </span>
             <span class="p-2 col c text-center">
-              {{ user.Date | date}}
+              {{ user.Date | date }}
             </span>
             <div class="col p-2 text-center">
               <button
@@ -220,7 +227,11 @@
               >
                 Edit
               </button>
-              <button type="button" class="btn btn-danger" (click)="delete(user.id)">
+              <button
+                type="button"
+                class="btn btn-danger"
+                (click)="delete(user.id)"
+              >
                 Delete
               </button>
             </div>

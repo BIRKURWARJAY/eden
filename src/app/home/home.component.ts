@@ -81,18 +81,18 @@ export class HomeComponent implements OnInit {
 
 
   ngOnInit() {
+
+    this.Name = new FormControl('', [Validators?.required, this.spaceValidator()]),
+    this.Group = new FormControl('', [Validators?.required]),
+    this.Status = new FormControl('', [
+      Validators?.required
+    ]),
+    this.Date = new FormControl('', [
+      Validators?.required,
+      this.DateValidator
+    ]),
     this.homeForm = new FormGroup({
-      Name: new FormControl('', [Validators?.required, this.spaceValidator()]),
-      Group: new FormControl('', [Validators?.required, this.spaceValidator()]),
-      Status: new FormControl('', [
-        Validators?.required, 
-        this.spaceValidator()
-      ]),
-      Date: new FormControl('', [
-        Validators?.required,
-        this.DateValidator,
-        this.spaceValidator()
-      ]),
+    
     });
     this.getUsers();
   }
@@ -135,7 +135,7 @@ export class HomeComponent implements OnInit {
   check(n: string) {
     return (
       this.homeForm.get(n)?.hasError('required') &&
-      (this.homeForm.get(n)?.touched && this.homeForm.get(n)?.value.trim() == 0) //////////////////////////////////////////////
+      (this.homeForm.get(n)?.touched && this.homeForm.get(n)?.value?.trim() == 0) //////////////////////////////////////////////
     );
   }
 
@@ -187,7 +187,7 @@ export class HomeComponent implements OnInit {
   spaceValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       const value = control.value;
-      if (value && value?.trim().length === 0) {
+      if (value && value?.trim()?.length === 0) {
         return { noOnlySpaces: true };
       }
       return null;

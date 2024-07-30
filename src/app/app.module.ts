@@ -10,10 +10,18 @@ import { BillingComponent } from './billing/billing.component';
 import { ConfigurationComponent } from './configuration/configuration.component';
 import { NotificationComponent } from './notification/notification.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { BorderclrDirective } from './directives/borderclr.directive';
 import { NavComponent } from './nav/nav.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginpageComponent } from './loginpage/loginpage.component';
+
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+
 
 @NgModule({
   declarations: [
@@ -24,7 +32,6 @@ import { LoginpageComponent } from './loginpage/loginpage.component';
     BillingComponent,
     ConfigurationComponent,
     NotificationComponent,
-    BorderclrDirective,
     NavComponent,
   ],
   imports: [
@@ -35,6 +42,13 @@ import { LoginpageComponent } from './loginpage/loginpage.component';
     FormsModule,
     BrowserAnimationsModule,
     LoginpageComponent,
+    MatInputModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatOptionModule,
+    MatSelectModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

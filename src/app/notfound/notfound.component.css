@@ -1,0 +1,27 @@
+/* not-found.component.css */
+.not-found {
+    text-align: center;
+    padding: 50px;
+    background-color: #f8f9fa;
+    color: #343a40;
+  }
+  
+  .not-found h1 {
+    font-size: 6rem;
+    margin: 0;
+  }
+  
+  .not-found h2 {
+    font-size: 2rem;
+    margin-top: 0;
+  }
+  
+  .not-found p {
+    font-size: 1.2rem;
+    margin: 20px 0;
+  }
+  
+  .not-found .btn {
+    margin-top: 20px;
+  }
+  

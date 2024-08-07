@@ -13,6 +13,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NavComponent } from './nav/nav.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginpageComponent } from './loginpage/loginpage.component';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -32,6 +33,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     ConfigurationComponent,
     NotificationComponent,
     NavComponent,
+    NotfoundComponent,
   ],
   imports: [
     BrowserModule,

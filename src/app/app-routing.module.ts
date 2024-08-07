@@ -9,7 +9,8 @@ import { NotificationComponent } from './notification/notification.component';
 import { LoginpageComponent } from './loginpage/loginpage.component';
 
 const routes: Routes = [
-  { path: '',  component: LoginpageComponent},
+  { path: '',  redirectTo: '/login', pathMatch: 'full' },
+  { path: 'login', component: LoginpageComponent },
   { path: 'home', component: HomeComponent},
   { path: 'member', component: MembersComponent},
   { path: 'audit', component:AuditComponent },

@@ -73,9 +73,6 @@ form {
     padding: 30px;
 }
 
-.modal-dialog{
-    z-index: -1;
-}
-mat-form-field{
+mat-option{
     z-index: 100;
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -34,18 +34,7 @@ export class HomeComponent implements OnInit {
   };
   dupName:boolean = false;
 
-  constructor(private userDataService:ApiserviceService){
-  }
-
-  @ViewChild('Submit') SubmitBtn!: ElementRef;
-
-  enterKeyAction(el: ElementRef){
-    if(el){
-      el.nativeElement.focus();
-      console.log(el.nativeElement);
-    }
-  }
-
+  constructor(private userDataService:ApiserviceService){ }
 
 
   getUsers(){
@@ -92,7 +81,10 @@ export class HomeComponent implements OnInit {
       this.DateValidator
     ]),
     this.homeForm = new FormGroup({
-    
+      Name: this.Name,
+      Group: this.Group,
+      Status: this.Status,
+      Date: this.Date
     });
     this.getUsers();
   }

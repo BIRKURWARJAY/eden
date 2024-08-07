@@ -50,7 +50,6 @@
                 id="Name"
                 [formControl]="Name"
                 [ngStyle]="dupNameField"
-                (keydown.enter)="enterKeyAction(SubmitBtn)"
               />
               <mat-error *ngIf="Name.invalid"> Name is required. </mat-error>
               <mat-error *ngIf="dupName">
@@ -63,7 +62,6 @@
               <mat-select
                 [formControl]="Group"
                 id="Group"
-                (keydown.enter)="enterKeyAction(SubmitBtn)"
               >
                 <mat-option value="Designers">Designers</mat-option>
                 <mat-option value="Development">Development</mat-option>
@@ -78,7 +76,6 @@
               <mat-select
                 [formControl]="Status"
                 id="Status"
-                (keydown.enter)="enterKeyAction(SubmitBtn)"
               >
                 <mat-option value="In Progress">In progress</mat-option>
                 <mat-option value="Completed">Completed</mat-option>
@@ -96,7 +93,6 @@
                 type="date"
                 [matDatepicker]="picker"
                 [formControl]="Date"
-                (keydown.enter)="enterKeyAction(SubmitBtn)"
               />
               <mat-datepicker-toggle
                 matIconSuffix

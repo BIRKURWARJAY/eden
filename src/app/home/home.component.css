@@ -73,6 +73,6 @@ form {
     padding: 30px;
 }
 
-mat-option{
-    z-index: 100;
+.modal-body{
+    mix-blend-mode:difference;
 }

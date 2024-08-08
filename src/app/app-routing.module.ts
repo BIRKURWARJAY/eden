@@ -7,6 +7,7 @@ import { BillingComponent } from './billing/billing.component';
 import { ConfigurationComponent } from './configuration/configuration.component';
 import { NotificationComponent } from './notification/notification.component';
 import { LoginpageComponent } from './loginpage/loginpage.component';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 const routes: Routes = [
   { path: '',  redirectTo: '/login', pathMatch: 'full' },
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'billing', component: BillingComponent },
   { path: 'configuration', component: ConfigurationComponent },
   { path: 'notification', component: NotificationComponent },
+  { path: '**', component: NotfoundComponent }
 ];
 
 @NgModule({

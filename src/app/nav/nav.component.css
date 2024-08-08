@@ -5,6 +5,5 @@ a{
 
 a.active{
     border-bottom: 4px solid #99c6a4;
-    border-radius: 7px;
     color: #99c6a4;
 }

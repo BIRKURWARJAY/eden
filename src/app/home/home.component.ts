@@ -37,38 +37,7 @@ export class HomeComponent implements OnInit {
   constructor(private userDataService:ApiserviceService){ }
 
 
-  getUsers(){
-    this.userDataService.getUsers().subscribe((data) => {
-      this.usersData = data;
-  })
-  }
-
-  postUserData(user:any){
-    this.userDataService.postUsers(user).subscribe(() =>{
-   
-    });
-    this.display = 'modal';
-    this.closeField?.click();
-    this.getUsers(); 
-  }
-
-
-  editUser(id: number, newData:any){
-    this.userDataService.editUserData(id, newData).subscribe((data) => {
-      this.getUsers();
-    });
-    this.display = 'modal';
-    this.closeField?.click();
-  }
-
-  delete(id: number){
-    this.userDataService.deleteUser(id).subscribe(() => {
-      this.getUsers();
-    })
-  }
-
-
-
+  
   ngOnInit() {
 
     this.Name = new FormControl('', [Validators?.required, this.spaceValidator()]),
@@ -88,6 +57,37 @@ export class HomeComponent implements OnInit {
     });
     this.getUsers();
   }
+
+
+  getUsers(){
+    this.userDataService.getUsers().subscribe((data) => {
+      this.usersData = data;
+  })
+  }
+
+  postUserData(user:any){
+    this.userDataService.postUsers(user).subscribe(() =>{
+      this.getUsers(); 
+    });
+    this.display = 'modal';
+    this.closeField?.click();
+  }
+
+
+  editUser(id: number, newData:any){
+    this.userDataService.editUserData(id, newData).subscribe((data) => {
+      this.getUsers();
+    });
+    this.display = 'modal';
+    this.closeField?.click();
+  }
+
+  delete(id: number){
+    this.userDataService.deleteUser(id).subscribe(() => {
+      this.getUsers();
+    })
+  }
+
 
   add() {
     this.manageEdit = false;
